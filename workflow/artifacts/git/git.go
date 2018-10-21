@@ -93,7 +93,7 @@ func gitClone(path string, inputArtifact *wfv1.Artifact, auth transport.AuthMeth
 		return errors.InternalWrapError(err)
 	}
 	if inputArtifact.Git.Revision != "" {
-		revParseCmd := exec.Command("sh", "-c", fmt.Sprintf("git rev-parse %s", inputArtifact.Git.Revision))
+		revParseCmd := exec.Command("git", "rev-parse", inputArtifact.Git.Revision)
 		revParseCmd.Path = path
 		gitRevision, err := revParseCmd.Output()
 		if err != nil {
